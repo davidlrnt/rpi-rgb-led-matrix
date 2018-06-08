@@ -21,7 +21,7 @@ class RunText(SampleBase):
         while True:
             offscreen_canvas.Clear()
             # len = graphics.DrawText(offscreen_canvas, font, pos, 10, textColor, my_text)
-            len = graphics.DrawText(offscreen_canvas, font, 0, 10, textColor, n)
+            len = graphics.DrawText(offscreen_canvas, font, 0, 10, textColor, str(n))
             n += 1
             # pos -= 1
             # if (pos + len < 0):
