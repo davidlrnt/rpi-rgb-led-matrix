@@ -10,6 +10,9 @@ import requests
 import os # imports package for dotenv
 import json
 
+from stopsMap import smap
+
+
 api_key = '39fa1b3cfea1c72849864463ea04e331'
 
 stop_id = 'L15'
@@ -29,12 +32,26 @@ def get_times():
 
     time_now = int(time.time())
 
-    for entity in data['entity']:
-        if('tripUpdate' in entity):
-            for sched in entity['tripUpdate']['stopTimeUpdate']:
-                if( stop_id in sched['stopId']):
+    if( 'entity' in data):
+        for entity in data['entity']:
+            if('tripUpdate' in entity):
+                for sched in entity['tripUpdate']['stopTimeUpdate']:
+                    if( stop_id in sched['stopId']):
+                        stops[sched['stopId'].replace(stop_id, "")].append( {"time": round((int(sched['arrival']['time']) - time_now) / 60) ,"direction": smap[entity['tripUpdate']['stopTimeUpdate'][-1]["stopId"]] } )
 
-                    stops[sched['stopId'].replace(stop_id, "")].append( round((int(sched['arrival']['time']) - time_now) / 60) )
+        stops['S'] = sorted(stops['S'], key=lambda k: k['time']) 
+        stops['N'] = sorted(stops['S'], key=lambda k: k['time']) 
+    else:
+        print('Malformatted MTA data', data)
+        with open('data.json', 'w') as outfile:
+            json.dump(jsonObj, outfile)
+
+    # for entity in data['entity']:
+    #     if('tripUpdate' in entity):
+    #         for sched in entity['tripUpdate']['stopTimeUpdate']:
+    #             if( stop_id in sched['stopId']):
+
+    #                 stops[sched['stopId'].replace(stop_id, "")].append( round((int(sched['arrival']['time']) - time_now) / 60) )
 
 
     return stops
@@ -51,21 +68,20 @@ class RunText(SampleBase):
         textColor = graphics.Color(255, 255, 0)
         pos = offscreen_canvas.width
         my_text = self.args.text
-        n = 0
+
         while True:
             times = get_times()
             # r = requests.get('https://api.coinbase.com/v2/prices/BTC-USD/spot')
             # price = "BTC: " + r.json()['data']['amount']
-            timestr = str(times["N"][0]) + " MINUTES";
-            timestr2 = str(times["N"][1]) + " MINUTES";
-            # timestr = str(times["N"][0]) + " MINUTES";
+            timestr = str(times["N"][0]['time']) + " MINUTES";
+            timestr2 = str(times["N"][1]['time']) + " MINUTES";
+            timestr = str(times["N"][2]['time']) + "m - " + str(times["N"][2]['direction']);
 
             offscreen_canvas.Clear()
             # len = graphics.DrawText(offscreen_canvas, font, pos, 10, textColor, my_text)
-            len = graphics.DrawText(offscreen_canvas, font, 0, 10, textColor, timestr)
-            len = graphics.DrawText(offscreen_canvas, font, 40, 10, textColor, timestr2)
-
-            n += 1
+            graphics.DrawText(offscreen_canvas, font, 2, 7, textColor, timestr)
+            graphics.DrawText(offscreen_canvas, font, 2, 14, textColor, timestr2)
+            graphics.DrawText(offscreen_canvas, font, 2, 21, textColor, timestr3)
 
             # pos -= 1
             # if (pos + len < 0):
