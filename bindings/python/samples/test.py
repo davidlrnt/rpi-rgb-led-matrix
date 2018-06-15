@@ -75,7 +75,7 @@ class RunText(SampleBase):
             # price = "BTC: " + r.json()['data']['amount']
             timestr = str(times["N"][0]['time']) + " MINUTES";
             timestr2 = str(times["N"][1]['time']) + " MINUTES";
-            timestr = str(times["N"][2]['time']) + "m - " + str(times["N"][2]['direction']);
+            timestr3 = str(times["N"][2]['time']) + "m - " + str(times["N"][2]['direction']);
 
             offscreen_canvas.Clear()
             # len = graphics.DrawText(offscreen_canvas, font, pos, 10, textColor, my_text)
