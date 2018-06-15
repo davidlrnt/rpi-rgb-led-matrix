@@ -61,6 +61,7 @@ class RunText(SampleBase):
             offscreen_canvas.Clear()
             # len = graphics.DrawText(offscreen_canvas, font, pos, 10, textColor, my_text)
             len = graphics.DrawText(offscreen_canvas, font, 0, 10, textColor, timestr)
+            len = graphics.DrawText(offscreen_canvas, font, 0, 10, textColor, timestr)
             n += 1
 
             # pos -= 1
