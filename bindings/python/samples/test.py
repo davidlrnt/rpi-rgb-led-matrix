@@ -84,10 +84,10 @@ class RunText(SampleBase):
 
             offscreen_canvas.Clear()
             # len = graphics.DrawText(offscreen_canvas, font, pos, 10, textColor, my_text)
-            graphics.DrawText(offscreen_canvas, font, 2, 7, textColor, timestr)
-            graphics.DrawText(offscreen_canvas, font, 2, 14, textColor, timestr2)
-            graphics.DrawText(offscreen_canvas, font, 2, 21, textColor, timestr3)
-            graphics.DrawText(offscreen_canvas, font, 2, 28, textColor, timestr4)
+            graphics.DrawText(offscreen_canvas, font, 2, 8, textColor, timestr)
+            graphics.DrawText(offscreen_canvas, font, 2, 16, textColor, timestr2)
+            graphics.DrawText(offscreen_canvas, font, 2, 22, textColor, timestr3)
+            graphics.DrawText(offscreen_canvas, font, 2, 30, textColor, timestr4)
 
             # pos -= 1
             # if (pos + len < 0):
