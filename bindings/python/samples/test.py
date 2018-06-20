@@ -64,24 +64,29 @@ class RunText(SampleBase):
     def run(self):
         offscreen_canvas = self.matrix.CreateFrameCanvas()
         font = graphics.Font()
-        font.LoadFont("../../../fonts/5x8.bdf")
+        font.LoadFont("../../../fonts/6x9.bdf")
         textColor = graphics.Color(255, 255, 0)
         pos = offscreen_canvas.width
         my_text = self.args.text
 
         while True:
             times = get_times()
+
+            alltimes = sorted(times['N'] + times['S'], key=lambda k: k['time']) 
+
             # r = requests.get('https://api.coinbase.com/v2/prices/BTC-USD/spot')
             # price = "BTC: " + r.json()['data']['amount']
-            timestr = "L" + str(times["N"][0]['time']) + "m - " + str(times["N"][2]['direction']);
-            timestr2 = "L" + str(times["N"][1]['time']) + "m - " + str(times["N"][2]['direction']);
-            timestr3 = "L" + str(times["N"][2]['time']) + "m - " + str(times["N"][2]['direction']);
+            timestr = "L" + str(alltimes[0]['time']) + "m - " + str(alltimes[0]['direction']);
+            timestr2 = "L" + str(alltimes[1]['time']) + "m - " + str(alltimes[1]['direction']);
+            timestr3 = "L" + str(alltimes[2]['time']) + "m - " + str(alltimes[2]['direction']);
+            timestr4 = "L" + str(alltimes[3]['time']) + "m - " + str(alltimes[3]['direction']);
 
             offscreen_canvas.Clear()
             # len = graphics.DrawText(offscreen_canvas, font, pos, 10, textColor, my_text)
             graphics.DrawText(offscreen_canvas, font, 2, 7, textColor, timestr)
             graphics.DrawText(offscreen_canvas, font, 2, 14, textColor, timestr2)
             graphics.DrawText(offscreen_canvas, font, 2, 21, textColor, timestr3)
+            graphics.DrawText(offscreen_canvas, font, 2, 28, textColor, timestr4)
 
             # pos -= 1
             # if (pos + len < 0):
