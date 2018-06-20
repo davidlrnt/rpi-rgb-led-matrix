@@ -40,7 +40,7 @@ def get_times():
                         stops[sched['stopId'].replace(stop_id, "")].append( {"time": round((int(sched['arrival']['time']) - time_now) / 60) ,"direction": smap[entity['tripUpdate']['stopTimeUpdate'][-1]["stopId"]] } )
 
         stops['S'] = sorted(stops['S'], key=lambda k: k['time']) 
-        stops['N'] = sorted(stops['S'], key=lambda k: k['time']) 
+        stops['N'] = sorted(stops['N'], key=lambda k: k['time']) 
     else:
         print('Malformatted MTA data', data)
         with open('data.json', 'w') as outfile:
@@ -73,6 +73,7 @@ class RunText(SampleBase):
             times = get_times()
 
             alltimes = sorted(times['N'] + times['S'], key=lambda k: k['time']) 
+
 
             # r = requests.get('https://api.coinbase.com/v2/prices/BTC-USD/spot')
             # price = "BTC: " + r.json()['data']['amount']
