@@ -64,7 +64,7 @@ class RunText(SampleBase):
     def run(self):
         offscreen_canvas = self.matrix.CreateFrameCanvas()
         font = graphics.Font()
-        font.LoadFont("../../../fonts/6x12.bdf")
+        font.LoadFont("../../../fonts/6x10.bdf")
         textColor = graphics.Color(255, 255, 0)
         textColor2 = graphics.Color(4, 121, 222)
         pos = offscreen_canvas.width
@@ -78,10 +78,10 @@ class RunText(SampleBase):
 
             # r = requests.get('https://api.coinbase.com/v2/prices/BTC-USD/spot')
             # price = "BTC: " + r.json()['data']['amount']
-            timestr = "  " + str(alltimes[0]['time']) + "m - " + str(alltimes[0]['direction']);
-            timestr2 = "  " + str(alltimes[1]['time']) + "m - " + str(alltimes[1]['direction']);
-            timestr3 = "  " + str(alltimes[2]['time']) + "m - " + str(alltimes[2]['direction']);
-            timestr4 = "  " + str(alltimes[3]['time']) + "m - " + str(alltimes[3]['direction']);
+            timestr = "  " + str(alltimes[0]['time']) + "m  " + str(alltimes[0]['direction']);
+            timestr2 = "  " + str(alltimes[1]['time']) + "m  " + str(alltimes[1]['direction']);
+            timestr3 = "  " + str(alltimes[2]['time']) + "m  " + str(alltimes[2]['direction']);
+            timestr4 = "  " + str(alltimes[3]['time']) + "m  " + str(alltimes[3]['direction']);
 
             offscreen_canvas.Clear()
             # len = graphics.DrawText(offscreen_canvas, font, pos, 10, textColor, my_text)
