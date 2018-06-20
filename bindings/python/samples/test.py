@@ -73,9 +73,9 @@ class RunText(SampleBase):
             times = get_times()
             # r = requests.get('https://api.coinbase.com/v2/prices/BTC-USD/spot')
             # price = "BTC: " + r.json()['data']['amount']
-            timestr = str(times["N"][0]['time']) + " MINUTES";
-            timestr2 = str(times["N"][1]['time']) + " MINUTES";
-            timestr3 = str(times["N"][2]['time']) + "m - " + str(times["N"][2]['direction']);
+            timestr = "L" + str(times["N"][0]['time']) + "m - " + str(times["N"][2]['direction']);
+            timestr2 = "L" + str(times["N"][1]['time']) + "m - " + str(times["N"][2]['direction']);
+            timestr3 = "L" + str(times["N"][2]['time']) + "m - " + str(times["N"][2]['direction']);
 
             offscreen_canvas.Clear()
             # len = graphics.DrawText(offscreen_canvas, font, pos, 10, textColor, my_text)
