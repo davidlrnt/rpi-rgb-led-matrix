@@ -66,6 +66,7 @@ class RunText(SampleBase):
         font = graphics.Font()
         font.LoadFont("../../../fonts/6x12.bdf")
         textColor = graphics.Color(255, 255, 0)
+        textColor2 = graphics.Color(4, 121, 222)
         pos = offscreen_canvas.width
         my_text = self.args.text
 
@@ -77,10 +78,10 @@ class RunText(SampleBase):
 
             # r = requests.get('https://api.coinbase.com/v2/prices/BTC-USD/spot')
             # price = "BTC: " + r.json()['data']['amount']
-            timestr = "L" + str(alltimes[0]['time']) + "m - " + str(alltimes[0]['direction']);
-            timestr2 = "L" + str(alltimes[1]['time']) + "m - " + str(alltimes[1]['direction']);
-            timestr3 = "L" + str(alltimes[2]['time']) + "m - " + str(alltimes[2]['direction']);
-            timestr4 = "L" + str(alltimes[3]['time']) + "m - " + str(alltimes[3]['direction']);
+            timestr = "  " + str(alltimes[0]['time']) + "m - " + str(alltimes[0]['direction']);
+            timestr2 = "  " + str(alltimes[1]['time']) + "m - " + str(alltimes[1]['direction']);
+            timestr3 = "  " + str(alltimes[2]['time']) + "m - " + str(alltimes[2]['direction']);
+            timestr4 = "  " + str(alltimes[3]['time']) + "m - " + str(alltimes[3]['direction']);
 
             offscreen_canvas.Clear()
             # len = graphics.DrawText(offscreen_canvas, font, pos, 10, textColor, my_text)
@@ -89,6 +90,11 @@ class RunText(SampleBase):
             graphics.DrawText(offscreen_canvas, font, 2, 23, textColor, timestr3)
             graphics.DrawText(offscreen_canvas, font, 2, 31, textColor, timestr4)
 
+
+            graphics.DrawText(offscreen_canvas, font, 2, 8, textColor2, "L ")
+            graphics.DrawText(offscreen_canvas, font, 2, 16, textColor2, "L ")
+            graphics.DrawText(offscreen_canvas, font, 2, 23, textColor2, "L ")
+            graphics.DrawText(offscreen_canvas, font, 2, 31, textColor2, "L ")
             # pos -= 1
             # if (pos + len < 0):
             #     pos = offscreen_canvas.width
